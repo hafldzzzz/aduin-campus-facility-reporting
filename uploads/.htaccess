@@ -1,0 +1,12 @@
+Options -Indexes
+<IfModule !mod_rewrite.c>
+    Require all denied
+</IfModule>
+<FilesMatch "(?i)(^\.|\.(php[0-9]*|pht|phtml|phps|phar|inc|cgi|fcgi|pl|py|shtml|html?|svg|js)(\.|$))">
+    Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(pengaduan|perbaikan)/([^/]+\.(?:jpe?g|png|webp))$ ../media.php?kind=$1&file=$2 [END,NC]
+    RewriteRule ^ - [F,L]
+</IfModule>
